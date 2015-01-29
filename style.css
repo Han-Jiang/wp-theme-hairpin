@@ -1,10 +1,259 @@
-﻿/* 
-	Theme Name:Hairpin
-	Theme URL: http://jilinhan.sinaapp.com/
-	Description:作者系 暨南大学国际学院 11CST 学生  获得技术支持　<a href="http://hanlin.me">作者主页</a>
-	Author: 暨林瀚
-	Author URI: http://hanlin.me
-	Version: 0.9
+﻿/* Theme Name:HairpinV1
+Theme URL:http://www.han.pm/
+Description:VEN IT Technology
+Author:暨林瀚, 朱剑锋
+Author URI:http://www.han.pm/
+Version:1.0 */
+
+html body {
+  width: 100%;
+  height: 100%;
+  font-family: "Microsoft Yahei";
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+/* set all the title fonts */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  text-decoration: none;
+  font-family: "Microsoft Yahei";
+}
+li{
+  list-style: none;
+}
+.topic {
+  margin-top: 5px;
+}
+.topic img {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+/* .carousel, .slide, #carousel-example-generic {
+  height: 500px;
+}
 */
+/* 首页文章列表 */
+.post-meta {
+  padding-bottom: 8px;
+}
+.post-meta:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.post-title {
+  width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 文章列表头部 */
+.panel-title > a {
+  text-decoration: none;
+  font-family: "Microsoft Yahei";
+}
+.panel-title > a:hover, a:focus{
+   color: rgb(253,241,0);
+}
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+  margin-right: 10px;
+  border-color: #ccc;
+}
+
+/* 更多 按钮 */
+.btn-blank {
+  display: inline-block;
+  padding: 2px 12px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 15px;
+}
+.post-meta a {
+  font-family: "Microsoft Yahei";
+  text-decoration: none;
+}
+.post-meta a:hover, .post-meta a:focus {
+  text-decoration: none;
+  background-color: #ccc;
+}
 
 
+/*定义 archive 页面标题 hover 颜色*/
+.archive_title a:hover{
+  color: rgb(253,241,0);
+}
+
+/******************************************
+*导航栏在小屏幕，只显示部分
+*******************************************/
+
+
+
+/******************************************
+*single 页面  内容中图片大小自适应
+*******************************************/
+#content img{
+  max-width: 95%;
+  margin:0 auto;
+  display: block;
+}
+
+
+
+/******************************************
+*首页大图  在小屏幕不显示
+*******************************************/
+  
+/* 首页大图 */
+@media(max-width:767px) {
+  .topic {
+    display: none;
+  }
+}
+
+/******************************************
+*首页轮播图的大小自适应
+*******************************************/
+
+
+  @media (min-width:318px) and (max-width:379px){
+    #carousel-example-generic {
+      height: 180px;
+    }
+  }
+
+  @media (max-width:380px) {
+    #carousel-example-generic {
+      height: 230px;
+    }
+  }
+
+  @media (max-width:480px) {
+    #carousel-example-generic {
+      height: 300px;
+    }
+  }
+
+  @media (min-width:481px) and (max-width: 580px) {
+    #carousel-example-generic {
+      height: 350px;
+    }
+  }
+
+  @media (min-width:581px) and (max-width: 680px) {
+    #carousel-example-generic {
+      height: 400px;
+    }
+  }
+
+
+  @media (min-width:681px) and (max-width: 767px)  {
+    #carousel-example-generic {
+      height: 450px;
+    }
+  }
+
+  @media (min-width:768px)  {
+    #carousel-example-generic {
+      height: 500px;
+    }
+  }
+
+
+
+/******************************************
+*page.php single.php 和archive.php 正文和右边弹出菜单css
+*******************************************/
+/*single.php auto resizing css*/
+
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 0;
+  }
+
+  .row-offcanvas-left {
+    left: 0;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 50%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+  }
+}
+
+
+#uyan-copyright{
+  display: none;
+}
+
+
+
+/******************************************
+* Supernavo CSS
+*******************************************/
+.supernavo .current{color: #999999;}
+.supernavo a, .supernavo span{background: #FFFFFF;border-radius: 30px 30px 30px 30px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: #AE2525;margin: 0 6px;display: inline-block;float: left;font-weight: 400;line-height: 1.2em;text-decoration: none;padding: 10px 12px;}
+.supernavo a:hover {background: #dd4814;color: #FFF;}
+
+.box ul{
+  padding: 0px;
+  padding-left:5px;
+}
+.widget h3{
+  color: #FF0000
+}
+
+.widget .box ul li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  list-style: none;
+}
+
+.widget .box ul li a {
+  color: #FF8000;
+  text-decoration: none;
+}
+.widget .box ul li a:hover, a:focus{
+  text-decoration: none;
+  color: red;
+}
+
+footer a{
+  text-decoration: none;
+}
+footer a:hover , a:focus{
+  text-decoration: none;
+}

@@ -1,10 +1,14 @@
 <?php
+
+include (TEMPLATEPATH."/vengix/vengix.php");
  
- // To enable post thumbnails, the current theme must include add_theme_support( 'post-thumbnails' ); in its functions.php file. See also Post Thumbnails.
- // has_post_thumbnail( $post_id )
- add_theme_support( 'post-thumbnails' ); 
+// To enable post thumbnails, the current theme must include add_theme_support( 'post-thumbnails' ); in its functions.php file. See also Post Thumbnails.
+// has_post_thumbnail( $post_id )
+add_theme_support( 'post-thumbnails' ); 
  
-include("includes/theme_options.php");
+// include("includes/theme_options.php");
+
+
 
 if (function_exists('register_sidebar'))
 {
@@ -95,8 +99,7 @@ if (function_exists('register_sidebar'))
 // 自定义菜单 外观中会出现菜单选项
    register_nav_menus(
       array(
-         'header-menu' => __( '导航自定义菜单' ),
-         'footer-menu' => __( '页角自定义菜单' )
+         'header-menu' => __( '导航自定义菜单' )
       )
    );
 
@@ -186,7 +189,6 @@ function getPostViews($postID) {  //此函数用于输出文章浏览次数
 
 }
 
- 
 
 function setPostViews($postID) {    //将文章id传到函数中，文章被采用一次，$count自加//1
 
@@ -210,6 +212,60 @@ function setPostViews($postID) {    //将文章id传到函数中，文章被采�
 
     }
 
+}
+
+
+function ven_include($file_name){
+    include (TEMPLATEPATH . '/includes/'.$file_name); 
+}
+
+
+function ven_the_excerpt($post_content){
+    if (has_excerpt()){
+        the_excerpt(); 
+    }else{
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;".mb_strimwidth(strip_tags(apply_filters('the_content', $post_content)), 0, 480,"...");
+    } 
+}
+
+function ven_the_image(){
+    if ( $image = get_post_meta($post->ID, 'show', true) ) {
+        echo $image;
+    }elseif(has_post_thumbnail()) { 
+        the_post_thumbnail('show');
+    }else{
+        echo catch_first_image();
+    } 
+}
+
+
+//分类文章数
+function wt_get_category_count($input = '') {
+    global $wpdb;
+
+    if($input == '') {
+        $category = get_the_category();
+        return $category[0]->category_count;
+    }
+    elseif(is_numeric($input)) {
+        $SQL = "SELECT $wpdb->term_taxonomy.count FROM $wpdb->terms, $wpdb->term_taxonomy WHERE $wpdb->terms.term_id=$wpdb->term_taxonomy.term_id AND $wpdb->term_taxonomy.term_id=$input";
+        return $wpdb->get_var($SQL);
+    }
+    else {
+        $SQL = "SELECT $wpdb->term_taxonomy.count FROM $wpdb->terms, $wpdb->term_taxonomy WHERE $wpdb->terms.term_id=$wpdb->term_taxonomy.term_id AND $wpdb->terms.slug='$input'";
+        return $wpdb->get_var($SQL);
+    }
+}
+
+ven_include ('part-archive-list.php');
+
+
+function ven_get_content_layout_class(){
+    if(ven_is_mobile()){
+        echo "col-xs-12 col-sm-12";
+    }else{
+        echo "col-xs-12 col-sm-9";
+    }
 }
 
 ?>

@@ -1,50 +1,27 @@
 <?php get_header(); ?>
+<!-- 正文字体放大缩小-->
 
-
-<div id="content">
-<style type="text/css">
-	.browse{
-	float:left;
-	margin-top:12px;
-	width:800px;
-	border-bottom:1px dashed  #ccc;
-}
-
-.page{
-margin-top:20px;
-float:left;
-width:100%;
-
-}
-
-
-.page_content{
-padding-top:20px;
-padding-right:5%;
-padding-left:5%;
-background:rgb(255,255,255);
-}
-</style>
-
-<div class="browse">现在位置 ＞<a title="返回首页" href="<?php echo get_settings('Home'); ?>/">首页</a> ＞<?php the_title(); ?></div>
-
-	<?php if (have_posts()) : ?><?php while (have_posts()) : the_post(); ?>	
-	
-		<div class="page" id="post-<?php the_ID(); ?>">
-			
-			<div class="page_content" >
-			
-				<?php the_content('More &raquo;'); ?>				
-			</div>
-			
-		</div>
+<div class="container">
+	<div class="row row-offcanvas row-offcanvas-right">
+        <div class="<?php ven_get_content_layout_class();?>"> 
+    	<?php ven_include("part-breadcumb.php");?>
 		
-	<?php endwhile; ?><?php else : ?>
- 
-	<p >非常抱歉，无与之相匹配的信息。</p>
+			<?php if (have_posts()) : ?>
+				<?php while (have_posts()) : the_post(); ?>	
+				<?php the_content('More &raquo;'); ?>
+				<?php endwhile; ?>		
+			<?php endif; ?>
 
-	<?php endif; ?>
-</div>
-<!-- end: content -->
-
+		</div><!-- /col-xs-12 col-sm-9 -->			
+			  
+			  <?php 
+			  if(ven_is_mobile()){
+			  	
+			  }else {
+						get_sidebar();
+				} 
+				?>
+		
+		</div><!-- /row row-offcanvas row-offcanvas-right -->
+</div><!-- /container -->
 <?php get_footer(); ?>
